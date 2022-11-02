@@ -1,0 +1,2 @@
+# DontLookAtTheLight
+ Another silly game.
