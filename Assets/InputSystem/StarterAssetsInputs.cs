@@ -7,6 +7,7 @@ namespace StarterAssets
 {
 	public class StarterAssetsInputs : MonoBehaviour
 	{
+
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
@@ -20,6 +21,10 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+		[Header("References")]
+		public EnemyAI EnemyAI;
+		
+		
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		public void OnMove(InputValue value)
 		{
@@ -43,9 +48,11 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+		
+		public void OnDebug(InputValue value){
+			SetEnemyDirection();
+		}
 #endif
-
-
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
@@ -74,6 +81,11 @@ namespace StarterAssets
 		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		}
+
+		public void SetEnemyDirection()
+		{
+			EnemyAI.SetDestination();
 		}
 	}
 	
